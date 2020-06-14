@@ -92,6 +92,12 @@ def reply():
         print(str(mention.id) + '---' + mention.text)
         recent_id = mention.id
         store_recent_id(recent_id, file_name)
+
+        # HELP HASHTAG
+        if '#help' in mention.text.lower():
+            api.update_status('@' + mention.user.screen_name +" Hello! I'm a Twitter bot that brings out your inner artist. Try tagging me with one of my hashtags for help:\n#drawings for drawing ideas\n#musicals for musical suggestions\n#songs for song recommendations\n#movies for movies to watch\n#books for literature to read", mention.id)
+        # DRAWING HASHTAG
+        elif '#drawings' in mention.text.lower():
         if'#whatshouldidraw' in mention.text.lower() or '#artideas' in mention.text.lower():
             print('found you')
 
@@ -162,7 +168,7 @@ while True:
     reply()
     reply_image()
     # A quick nap.... Don't wake me up for 10 sec atleast !|
-    time.sleep(60)  #60 sec delay
+    time.sleep(10)  #60 sec delay
 
 follow_followers(api)
 c.close()
